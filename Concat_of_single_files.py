@@ -1,27 +1,27 @@
 import pandas as pd
 import re
-# Constituency = "Penamaluru"
+Constituency = "Gadwal_ALL_Mobile_NUMBERS"
 
-df1 = pd.read_excel(r"/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/voter_18_25/Z_concat_18_25_Age_group.xlsx",usecols=["Mobile"])
-df2 = pd.read_excel(r"/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/import_data3/Z_concat_18_25_Age_group.xlsx",usecols=["Mobile"])
-df3 = pd.read_excel(r"/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/import_data2/Z_Concat.xlsx",usecols=["Mobile"])
-# df4 = pd.read_excel(r"/home/rajashekar/Documents/FESTIVALS_DATA/UGADI_CAMPAINING_DATA/MALKAJGIRI/MALKAJGIRI_MOBILE_NUMBERS/MALKAJGIRI_UGADI_MOBILE_NUMBERS_part_2.xlsx",usecols=["Mobile"])
+df1 = pd.read_excel(r"/home/rajasekharreddy/Documents/Telangana_daily/Gadwal_04/Gadwal_mobile_numbers.xlsx",usecols=["Mobile"])
+df2 = pd.read_excel(r"/home/rajasekharreddy/Documents/Telangana_daily/Gadwal_04/gadwal_itoconnect_db_1_cleaned_database.xlsx",usecols=["Mobile"])
+df3 = pd.read_excel(r"/home/rajasekharreddy/Documents/Telangana_daily/Gadwal_04/gadwal_itoconnect_db_2_cleaned_database.xlsx",usecols=["Mobile"])
+df4 = pd.read_excel(r"/home/rajasekharreddy/Documents/Telangana_daily/Gadwal_04/gadwal_itoconnect_db_3_cleaned_database.xlsx",usecols=["Mobile"])
 # df5 = pd.read_excel(r"/home/rajashekar/Desktop/TELANGANA_STATE_DAILY_DATA/Medak/SERP_Employees_all_data_MPC_cleaned.xlsx",usecols=["Mobile"])
 
 # df = pd.concat([df1,df2,df3,df4,df5],ignore_index=True)
 # df = pd.concat([df1,df2],ignore_index=True)
-df = pd.concat([df1,df2,df3],ignore_index=True)
-# df = pd.concat([df1,df2,df3,df4],ignore_index=True)
+# df = pd.concat([df1,df2,df3],ignore_index=True)
+df = pd.concat([df1,df2,df3,df4],ignore_index=True)
 print(len(df1))
 print(len(df2))
 print(len(df3))
-# print(len(df4))
+print(len(df4))
 # print(len(df5))
 df.drop_duplicates(subset=["Mobile"],inplace=True)
 
 print(len(df))
 
-df.to_excel("Machilipatnam_18_25_Age_Group.xlsx",index = False)
+df.to_excel(f"/home/rajasekharreddy/Documents/Telangana_daily/Gadwal_04/{Constituency}.xlsx",index = False)
 
 
 # def add_space_in_dot(names):
@@ -76,13 +76,13 @@ df = df[df["Mobile"].notna()]  # Remove rows where Mobile is None
 # df["Names"] = df["Names"].str.title()
 # df = df[df["Mobile"].str.strip() != ""]
 
-print(df)
-print(len(df))
+# print(df)
+# print(len(df))
 # df.to_excel("Avanigadda_Names_Mobile_Numbers.xlsx",index = False)
 
 # df.drop_duplicates(subset=["Mobile"],inplace=True)
 
-print(len(df))
+# print(len(df))
 
 # df.to_excel(f"/home/rajashekar/Desktop/MACHILIPATNAM/Machilipatnam_Total_Mp_35_70_Age_Group.xlsx",index = False)
 
