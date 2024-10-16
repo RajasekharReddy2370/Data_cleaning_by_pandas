@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-main_folder_path = "/home/rajashekar/Desktop/AP_CPU/zz_imported_data/Machilipatnam/imported_Data"
+main_folder_path = "/home/rajashekar/Documents/Telangana_daily/karimnagar_15/to_be_cleaned"
 
 files = os.listdir(main_folder_path)
 
@@ -10,6 +10,8 @@ c = 0
 for file in files:
 
     df = pd.read_excel(main_folder_path+'/'+file,usecols=["Mobile"])
+    df = pd.read_excel(main_folder_path+'/'+file)
+    print(df.columns)
     fil = file.split('.xlsx')[0]
 
 
@@ -47,7 +49,7 @@ for file in files:
     df.drop_duplicates(subset=["Mobile"],inplace=True)
     c = c+1
     print(c,file,len(df))
-    df.to_excel(f'/home/rajashekar/Desktop/AP_CPU/zz_imported_data/Machilipatnam/imported_Data_cleaned/{fil}_cleaned.xlsx',index = False)
+    df.to_excel(f'/home/rajashekar/Documents/Telangana_daily/karimnagar_15/{fil}_cleaned.xlsx',index = False)
     cdf = pd.concat([cdf,df],ignore_index=True)
 print(len(cdf))
 
@@ -56,4 +58,5 @@ print(cdf)
 print(len(cdf))
 
 cdf["Mobile"] = cdf["Mobile"].astype(int)
-cdf.to_excel('/home/rajashekar/Desktop/AP_CPU/zz_imported_data/Machilipatnam/concat_Data/All_files_concat_data.xlsx',index = False)
+
+cdf.to_excel('/home/rajashekar/Documents/Telangana_daily/karimnagar_15/Sangareddy_siddipet_Medak_cleaned.xlsx',index = False)
