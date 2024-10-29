@@ -1,27 +1,47 @@
 import pandas as pd
 import re
-# Constituency = "Penamaluru"
+Constituency = "Karimnagar"
 
-df1 = pd.read_excel(r"/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/voter_18_25/Z_concat_18_25_Age_group.xlsx",usecols=["Mobile"])
-df2 = pd.read_excel(r"/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/import_data3/Z_concat_18_25_Age_group.xlsx",usecols=["Mobile"])
-df3 = pd.read_excel(r"/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/import_data2/Z_Concat.xlsx",usecols=["Mobile"])
+df1 = pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Voter_Mp/Karimnagar/Karimnagar_Mp_Mobile_Numbers_Cleaned.xlsx",usecols=["Mobile"])
+df2 = pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/IMPORTED_DATA/IMPORTED_DATA_CLEANED/KARIMNAGAR/Karimnagar_teachers_mobile_numbers.xlsx",usecols=["Mobile"])
+# df3 = pd.read_excel(r"/media/rajashekar/Extreme SSD/RAJA_LAPTOP/Telangana/TELANGANA/IMPORTED_DATA/IMPORTED_DATA_CLEANED/KARIMNAGAR/Karimnagar_teachers_mobile_numbers.xlsx",usecols=["Mobile"])
 # df4 = pd.read_excel(r"/home/rajashekar/Documents/FESTIVALS_DATA/UGADI_CAMPAINING_DATA/MALKAJGIRI/MALKAJGIRI_MOBILE_NUMBERS/MALKAJGIRI_UGADI_MOBILE_NUMBERS_part_2.xlsx",usecols=["Mobile"])
 # df5 = pd.read_excel(r"/home/rajashekar/Desktop/TELANGANA_STATE_DAILY_DATA/Medak/SERP_Employees_all_data_MPC_cleaned.xlsx",usecols=["Mobile"])
 
 # df = pd.concat([df1,df2,df3,df4,df5],ignore_index=True)
-# df = pd.concat([df1,df2],ignore_index=True)
-df = pd.concat([df1,df2,df3],ignore_index=True)
+df = pd.concat([df1,df2],ignore_index=True)
+# df = pd.concat([df1,df2,df3],ignore_index=True)
 # df = pd.concat([df1,df2,df3,df4],ignore_index=True)
 print(len(df1))
 print(len(df2))
-print(len(df3))
+# print(len(df3))
 # print(len(df4))
 # print(len(df5))
 df.drop_duplicates(subset=["Mobile"],inplace=True)
 
-print(len(df))
+l = len(df)
+print("After droping of duplicate rows",l)
+df.to_excel(f"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Voter_Mp/Karimnagar/karimnagar_mobile_numbers_updated.xlsx",index = False)
 
-df.to_excel("Machilipatnam_18_25_Age_Group.xlsx",index = False)
+# if l > 1000000:
+#     first_part = df.iloc[:1000000, :]
+#     second_part = df.iloc[1000001:, :]
+#
+#     first_file_path = f"/media/rajashekar/Extreme SSD/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Beneficiary_Voter_Mp_Constituency/Karimnagar/{Constituency}_Total_Mp_Mobile_Numbers_Part1_updated.xlsx"
+#     first_part.to_excel(first_file_path, index=False)
+#
+#     print("............................................first_part")
+#
+#     second_file_path = f"/media/rajashekar/Extreme SSD/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Beneficiary_Voter_Mp_Constituency/Karimnagar/{Constituency}_Total_Mp_Mobile_Numbers_Part2_updated.xlsx"
+#     second_part.to_excel(second_file_path, index=False)
+#     print("............................................second_part")
+# else:
+#     file_path = f"/media/rajashekar/Extreme SSD/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Beneficiary_Voter_Mp_Constituency/Karimnagar/{Constituency}_Total_Mp_Mobile_Numbers_updated.xlsx"
+#     df.to_excel(file_path, index=False)
+#     print("*******************************************original file stored successfully")
+# print(len(df))
+
+# df.to_excel("Machilipatnam_18_25_Age_Group.xlsx",index = False)
 
 
 # def add_space_in_dot(names):
@@ -65,7 +85,7 @@ df.to_excel("Machilipatnam_18_25_Age_Group.xlsx",index = False)
 # df['Mobile'] = df['Mobile'].apply(lambda x: x[2:] if len(x) > 10 and x.startswith('91') else x)
 # df['Mobile'] = df['Mobile'].apply(
 #     lambda x: x if x.startswith(('6', '7', '8', '9')) and len(x) == 10 else None)
-df = df[df["Mobile"].notna()]  # Remove rows where Mobile is None
+# df = df[df["Mobile"].notna()]  # Remove rows where Mobile is None
 # df = df[df["Names"].notna()]  # Remove rows where Mobile is None
 
 # df.dropna(subset=["Names"],inplace=True)
@@ -76,13 +96,13 @@ df = df[df["Mobile"].notna()]  # Remove rows where Mobile is None
 # df["Names"] = df["Names"].str.title()
 # df = df[df["Mobile"].str.strip() != ""]
 
-print(df)
-print(len(df))
+# print(df)
+# print(len(df))
 # df.to_excel("Avanigadda_Names_Mobile_Numbers.xlsx",index = False)
 
 # df.drop_duplicates(subset=["Mobile"],inplace=True)
 
-print(len(df))
+# print(len(df))
 
 # df.to_excel(f"/home/rajashekar/Desktop/MACHILIPATNAM/Machilipatnam_Total_Mp_35_70_Age_Group.xlsx",index = False)
 
