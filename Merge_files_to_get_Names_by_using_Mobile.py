@@ -43,18 +43,19 @@
 
 import pandas as pd
 
-# Sample DataFrame A
-A = pd.DataFrame({
-    'Names': ['Alice', 'cat Bob', 'Charlie David'],
-    'Mobile': ['1234567890', '2345678901', '3456789012']
-})
+df1 = pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/BENEFICIARY/Beneficiary_original/Nizamabad/Nizamabad (Rural)_18_o_beneficiary_scheme.xlsx")
+df2= pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/BENEFICIARY/Beneficiary_original/Nizamabad/Nizamabad (Urban)_17_o_beneficiary_scheme.xlsx")
+df3= pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/VOTER/Voter_original_Cleaned/Nizamabad/Nizamabad (Rural)-18-AC- iToC Voter Data.xlsx_o_Assembly_voter.xlsx")
+df3= pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/VOTER/Voter_original_Cleaned/Nizamabad/Nizamabad (Urban)-17-AC- iToC Voter Data.xlsx_o_Assembly_voter.xlsx")
 
-# Sample DataFrame B
-B = pd.DataFrame({
-    'Mobile': ['5555555555', '2345678901', '3456789012']
-})
+# A = pd.concat([df1,df2,df3],ignore_index=True)
+A = pd.concat([df1,df2],ignore_index=True)
 
+B = pd.read_excel(r"/home/rajashekar/Documents/Telangana_daily/Graduate_Numbers_which_having_No_Names.xlsx",usecols=["Mobile"])
 # Convert Mobile columns to string for comparison
+
+print(len(A))
+print(len(B))
 A['Mobile'] = A['Mobile'].astype(str)
 B['Mobile'] = B['Mobile'].astype(str)
 
@@ -63,6 +64,7 @@ matched_df = A[A['Mobile'].isin(B['Mobile'])]
 
 # Reset index of the result DataFrame for cleaner output
 matched_df.reset_index(drop=True, inplace=True)
+matched_df.to_excel(f"/home/rajashekar/Documents/Telangana_daily/G4_only_MLA_Cotituency/Nizamabad.xlsx",index = False)
 
 # Print the result
 print(matched_df)

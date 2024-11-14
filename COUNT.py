@@ -1,11 +1,13 @@
 import pandas as pd
 import os
 
-main_file_path = "/home/rajashekar/Desktop/TELANGANA_STATE_DAILY_DATA/Machilipatnam_imported_Data/constituencies_To_be_cleaned/imported_Data_concat"
+main_file_path = "/home/rajashekar/Desktop/All_states_data/Telangana/Beneficiary_Voter_Name_and_Mobile"
 files = os.listdir(main_file_path)
 cdf = pd.DataFrame()
+constituency_lengths_Mobile = {}
+numb = 0
 for file in files:
-    f = file.split('_')[0]
+    f = file.split('.')[0]
     # print(file)
     # constituency = file.split('.')[0]
     # print(main_file_path+'/'+file)
@@ -21,10 +23,19 @@ for file in files:
     # df["Telugu_Names"] = df["Telugu_Names"].astype(str)
     # df["Telugu_Names"] = df["Telugu_Names"].str.strip()
     cdf = pd.concat([cdf,df],ignore_index=True)
+    C = len(df)
     # df.to_excel(f"/home/rajashekar/Desktop/chevella/{constituency}.xlsx",index=False)
+    constituency_lengths_Mobile[f] = C
+    numb += 1
+    print(f,"ORIGINAL LENGTH ...................................", len(df),numb)
 
-    print(f,"ORIGINAL LENGTH ...................................", len(df))
-#
+constituency_df_n_m = pd.DataFrame(list(constituency_lengths_Mobile.items()), columns=['Constituency', 'Length'])
+constituency_df_n_m.to_excel('/home/rajashekar/Desktop/All_states_data/State_constituency_lengths/Name_and_Mobile/Telangana_constituency_lengths_Names_and_Mobile.xlsx', index=False)
+
+cdf.drop_duplicates(subset = ["Names","Mobile"],inplace=True)
+# cdf.drop_duplicates(subset = ["Mobile"],inplace=True)
+print("CDF...........................................",len(cdf))
+
 # print(len(cdf))
 # cdf.drop_duplicates(subset=["Mobile"],inplace=True)
 # print(len(cdf))

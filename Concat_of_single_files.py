@@ -1,27 +1,30 @@
 import pandas as pd
 import re
-Constituency = "Karimnagar"
+# Constituency = "Karimnagar"
 
-df1 = pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Voter_Mp/Karimnagar/Karimnagar_Mp_Mobile_Numbers_Cleaned.xlsx",usecols=["Mobile"])
-df2 = pd.read_excel(r"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/IMPORTED_DATA/IMPORTED_DATA_CLEANED/KARIMNAGAR/Karimnagar_teachers_mobile_numbers.xlsx",usecols=["Mobile"])
-# df3 = pd.read_excel(r"/media/rajashekar/Extreme SSD/RAJA_LAPTOP/Telangana/TELANGANA/IMPORTED_DATA/IMPORTED_DATA_CLEANED/KARIMNAGAR/Karimnagar_teachers_mobile_numbers.xlsx",usecols=["Mobile"])
-# df4 = pd.read_excel(r"/home/rajashekar/Documents/FESTIVALS_DATA/UGADI_CAMPAINING_DATA/MALKAJGIRI/MALKAJGIRI_MOBILE_NUMBERS/MALKAJGIRI_UGADI_MOBILE_NUMBERS_part_2.xlsx",usecols=["Mobile"])
-# df5 = pd.read_excel(r"/home/rajashekar/Desktop/TELANGANA_STATE_DAILY_DATA/Medak/SERP_Employees_all_data_MPC_cleaned.xlsx",usecols=["Mobile"])
+df1 = pd.read_excel(r"/home/rajashekar/Documents/Telangana_daily/Graduates/Adilabad_graduates.xlsx",usecols=["Names","Mobile"])
+df2 = pd.read_excel(r"/home/rajashekar/Documents/Telangana_daily/Graduates/Karimnagar_graduates.xlsx",usecols=["Names","Mobile"])
+df3 = pd.read_excel(r"/home/rajashekar/Documents/Telangana_daily/Graduates/Medak_graduates.xlsx",usecols=["Names","Mobile"])
+df4 = pd.read_excel(r"/home/rajashekar/Documents/Telangana_daily/Graduates/Nizamabad_graduates.xlsx",usecols=["Names","Mobile"])
+# df5 = pd.read_csv(r"/home/rajashekar/Documents/Telangana_daily/Failed_Numbers_2011359.csv",usecols=["Mobile"])
+# df6 = pd.read_csv(r"/home/rajashekar/Documents/Telangana_daily/Graduates/Nizamabad_graduates.xlsx",usecols=["Mobile"])
 
 # df = pd.concat([df1,df2,df3,df4,df5],ignore_index=True)
-df = pd.concat([df1,df2],ignore_index=True)
-# df = pd.concat([df1,df2,df3],ignore_index=True)
-# df = pd.concat([df1,df2,df3,df4],ignore_index=True)
+# df = pd.concat([df1,df2],ignore_index=True)
+df = pd.concat([df1,df2,df3,df4],ignore_index=True)
+# df = pd.concat([df1,df2,df3,df4,df5,df6],ignore_index=True)
 print(len(df1))
 print(len(df2))
-# print(len(df3))
-# print(len(df4))
+print(len(df3))
+print(len(df4))
 # print(len(df5))
+# print(len(df6))
+print(len(df))
 df.drop_duplicates(subset=["Mobile"],inplace=True)
 
 l = len(df)
 print("After droping of duplicate rows",l)
-df.to_excel(f"/home/rajashekar/Desktop/RAJA_LAPTOP/Telangana/TELANGANA/TELANGANA_MOBILE_NUMBERS_from_Drive_data_and_schemes/Voter_Mp/Karimnagar/karimnagar_mobile_numbers_updated.xlsx",index = False)
+# df.to_excel("/home/rajashekar/Documents/Telangana_daily/Graduates/Graduates_Names_and_MobileNumbers.xlsx",index = False)
 
 # if l > 1000000:
 #     first_part = df.iloc[:1000000, :]

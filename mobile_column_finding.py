@@ -5,7 +5,7 @@ df = pd.read_excel(r"/home/rajashekar/Downloads/687000 data contants karimnagar.
 # print(df.head)
 # pd.set_option('display.max_rows', None)
 
-/''
+
 # pd.set_option('display.max_columns', None)   # Show all columns
 
 # Print the DataFrame

@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import re
 
-main_file_path = "/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/import_data2"
+main_file_path = "/home/rajashekar/Documents/Telangana_daily/G3"
 files = os.listdir(main_file_path)
 
 
@@ -22,7 +22,9 @@ for file in files:
 #     # print(main_file_path+'/'+file)
 #     c = c+1
 #     # print(c)
-    df = pd.read_excel(main_file_path+'/'+file,usecols=["Mobile"])
+    print(file)
+    df = pd.read_excel(main_file_path+'/'+file,usecols=["Names","Mobile","Filename"])
+    df["Names"] = df["Names"].astype(str).str.title()
     df.drop_duplicates(subset=["Mobile"],inplace=True)
 #     print(len(df))
     result_df = pd.concat([result_df,df],ignore_index=True)
@@ -32,13 +34,14 @@ for file in files:
 #
 #     # Print or further process the filtered DataFrame
 #     # print(filtered_df)
+
 #     # filtered_df.to_excel(f"")
 #
 # print(len(result_df))
 #
 result_df.drop_duplicates(subset=["Mobile"],inplace = True)
 print(len(result_df))
-result_df.to_excel("/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatnam/Machilipatnam_18_25/import_data2/Z_Concat.xlsx",index = False)
+result_df.to_excel("/home/rajashekar/Documents/Telangana_daily/Graduates/Graduates_Medak_Nizamabad_Adilabad_Karimnagar.xlsx",index = False)
 
 #
 #     df.dropna(subset = ["Names"],inplace = True)
@@ -47,6 +50,7 @@ result_df.to_excel("/home/rajashekar/Desktop/Andhra_State_Daily_data/Machilipatn
 #
 #     def add_space_in_dot(name):
 #         if "." in name:
+
 #             name = name.replace(".", " ")
 #             return name
 #         else:
