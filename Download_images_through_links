@@ -1,0 +1,37 @@
+import os
+import requests
+
+# Path to the txt file that contains the image URLs
+txt_file_path = 'valid.txt'
+
+# Folder where you want to save the images
+output_folder = '/Users/c360/Desktop/valid_folder'
+
+# Create the output folder if it doesn't exist
+os.makedirs(output_folder, exist_ok=True)
+
+# Read the URLs from the txt file
+with open(txt_file_path, 'r') as file:
+    links = file.readlines()
+
+# Loop through each link, download and save the image
+for index, link in enumerate(links):
+    # Remove any extra spaces or newline characters
+    link = link.strip()
+
+    # Get the image file name (you can customize this to handle different formats)
+    img_name = f"image_{index + 1}.jpg"  # You can extract file extension from the link if needed
+
+    try:
+        # Send HTTP request to fetch the image
+        response = requests.get(link, stream=True)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+
+        # Write the image to the specified folder
+        with open(os.path.join(output_folder, img_name), 'wb') as img_file:
+            for chunk in response.iter_content(1024):
+                img_file.write(chunk)
+
+        print(f"Downloaded: {img_name}")
+    except Exception as e:
+        print(f"Failed to download {link}: {e}")
